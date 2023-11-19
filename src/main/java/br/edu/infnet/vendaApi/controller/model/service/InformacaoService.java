@@ -22,5 +22,7 @@ public class InformacaoService {
 		return informacaoRepository.save(informacao);
 	}
 
-	
+	public void excluir(Integer id) {
+		informacaoRepository.deleteById(id);
+	}
 }
