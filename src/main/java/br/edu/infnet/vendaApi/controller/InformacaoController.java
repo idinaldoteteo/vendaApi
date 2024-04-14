@@ -21,7 +21,7 @@ public class InformacaoController {
 	@Autowired
 	private InformacaoService informacaoService;
 	
-	@GetMapping(value = "/lista")
+	@GetMapping(value = "")
 	public List<Informacao> obterLista(){
 		return informacaoService.obterLista();
 	}
