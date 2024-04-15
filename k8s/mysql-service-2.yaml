@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service-2
+spec:
+  # vai criar um ip fixo 
+  type: ClusterIP
+  # o serviço vai ligar com todos os pods que tem essa label
+  selector:    
+    app: mysql-venda-app
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetPort: 3306
+    name: mysql
+    

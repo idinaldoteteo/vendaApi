@@ -1,0 +1,30 @@
+apiVersion: apps/v1 # precisa ser assim, está dentro do apps
+kind: Deployment
+metadata:
+  name: mysql-deploy
+spec:
+  replicas: 1
+  selector:
+    # labels que o deployment vai ler
+    matchLabels:      
+      app: mysql-venda-app
+  # são anotações do pod que o deployment vai gerenciar
+  template:
+    metadata:
+      name: mysql-pod
+      labels:
+        app: mysql-venda-app
+    spec:
+      containers:
+      - name: mysql-image
+        image: mysql:8.0.33
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: teteo
+        - name: MYSQL_DATABASE
+          value: dbInfnet
+        - name: MYSQL_HOST
+          value: mysql-service-2    
+        ports:
+        - containerPort: 3306
+          name: mysql

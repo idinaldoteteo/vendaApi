@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: venda-app-pod
+  labels:
+    app: venda
+    empresa: idinaldo
+spec:
+  containers:
+  - name: venda-app-image
+    image: teteo/venda-app:0.1

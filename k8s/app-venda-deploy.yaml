@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # precisa ser assim, está dentro do apps
+kind: Deployment
+metadata:
+  name: venda-app-deploy
+spec:
+  replicas: 1
+  selector:
+    # labels que o deployment vai ler
+    matchLabels:      
+      app: venda-app 
+  # são anotações do pod que o deployment vai gerenciar
+  template:
+    metadata:
+      name: venda-app-pod
+      labels:
+        app: venda-app
+    spec:
+      containers:
+      - name: venda-app-image
+        image: teteo/venda-app:0.1
+        ports:
+        - containerPort: 8081
+          name: http
+        env:    
+        - name: MYSQL_ROOT_PASSWORD
+          value: teteo
+        - name: MYSQL_DATABASE
+          value: dbInfnet
+        - name: MYSQL_HOST
+          value: mysql-service-2
+        - name: MYSQL_USER
+          value: root   
